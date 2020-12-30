@@ -1,0 +1,1 @@
+mongoimport --host=localhost:27017 --db=Ikasleak --collection=students --file=students.json

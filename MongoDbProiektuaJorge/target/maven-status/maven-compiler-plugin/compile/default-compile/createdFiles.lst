@@ -1,0 +1,4 @@
+views\BarraGrafikoa.class
+model\Student.class
+exekutagarri\StudentsExekutagarri.class
+model\Score.class
