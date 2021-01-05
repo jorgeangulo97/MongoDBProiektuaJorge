@@ -12,9 +12,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import model.Score;
 import model.Student;
 
@@ -36,7 +34,6 @@ public class BarraGrafikoa extends JFrame {
         } catch (Exception e) {
             System.err.println("Errore bat gertatu da.\n" + e);
         }
-
     }
 
     public BarraGrafikoa(FindIterable<Student> estadisticas) {

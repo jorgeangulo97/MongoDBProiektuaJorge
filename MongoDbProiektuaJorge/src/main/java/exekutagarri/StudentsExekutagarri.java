@@ -14,19 +14,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.eq;
-import java.util.ArrayList;
+import static com.mongodb.client.model.Updates.set;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import javax.swing.JFrame;
 import model.Score;
 import model.Student;
-import org.bson.BsonInt32;
 import org.bson.Document;
-import org.bson.BsonDocument;
-import org.bson.BsonDouble;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -63,7 +58,7 @@ public class StudentsExekutagarri {
             System.out.println("|  3. Datu Guztiak Ikusi             |");
             System.out.println("|  4. Datuak Ikusi Zatika            |");
             System.out.println("|  5. Datu Bakarra Ikusi             |");
-            System.out.println("|  6. Datu Bat Aldatu                |");
+            System.out.println("|  6. Izen bat Aldatu                |");
             System.out.println("|  7. Jframe ikusi nota altuenak     |");
             System.out.println("|  8. Jframe ikusi nota baxuenak     |");
             System.out.println("|  9. Irten                          |");
@@ -132,7 +127,11 @@ public class StudentsExekutagarri {
                     selectBakarraLehenengoa(izena);
                     break;
                 case 6:
-                    
+                    System.out.println("Sartu ikasle baten IDa izena aldatazeko: ");
+                    int ikasleId = sc.nextInt();
+                    System.out.println("Sartu zein izen nahi duzu: ");
+                    String izenBerria = sc.next();
+                    aldatuIkasleBatenIzena(ikasleId, izenBerria);
                     break;
                 case 7:
                     if (barraGrafikoa != null) {
@@ -269,4 +268,12 @@ public class StudentsExekutagarri {
         }
     }
 
+    public static void aldatuIkasleBatenIzena(int id, String izena){
+        try{
+            student_collection.updateOne(eq("_id", id), (set("name", izena)));
+                    System.out.println("Izena aldatu egin da.");
+        }catch (Exception e){
+            System.err.println("Ez dago id hori datubasean");
+        }
+    }
 }
